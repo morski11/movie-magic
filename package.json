@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/morski11/movie-magic/issues"
   },
-  "homepage": "https://github.com/morski11/movie-magic#readme"
+  "homepage": "https://github.com/morski11/movie-magic#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
 }
