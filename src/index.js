@@ -13,6 +13,10 @@ app.get("/", (req, res) => {
     res.render('home.hbs');
 });
 
+app.get("/about", (req, res) => {
+    res.render('about.hbs');
+})
+
 app.get("/*nf", (req, res) => {
     res.render('404.hbs');
 })
