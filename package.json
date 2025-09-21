@@ -1,0 +1,22 @@
+{
+  "name": "movie-magic",
+  "version": "1.0.0",
+  "description": "school project js web",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/morski11/movie-magic.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/morski11/movie-magic/issues"
+  },
+  "homepage": "https://github.com/morski11/movie-magic#readme"
+}
