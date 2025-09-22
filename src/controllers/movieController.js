@@ -7,6 +7,11 @@ movieController.get("/movies/create", (req, res) => {
     res.render('create.hbs');
 });
 
+movieController.get("/movies/search", (req, res) => {
+    const movies = movieService.getAll();
+    res.render('search.hbs', { movies });
+});
+
 movieController.get("/movies/:movieId", (req, res) => {
     const movieId = Number(req.params.movieId);
 
@@ -16,6 +21,7 @@ movieController.get("/movies/:movieId", (req, res) => {
     };
     res.render('details.hbs', { movie });
 });
+
 
 movieController.post("/movies/create", (req, res) => {
     console.log('click create');

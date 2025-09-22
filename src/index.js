@@ -8,7 +8,11 @@ const app = express();
 //make public folder accessible to everyone
 app.use(express.static('public'));
 
-app.engine("hbs", handlebars.engine());
+app.engine("hbs", handlebars.engine({
+    extname: "hbs",
+    partialsDir: "views/partials"
+
+}));
 app.set("view engine", "hbs");
 
 app.use(express.urlencoded());
