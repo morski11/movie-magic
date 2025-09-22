@@ -2,6 +2,7 @@ import express from 'express';
 import handlebars from 'express-handlebars'
 import movies from '../models/Movie.js';
 import movieController from './controllers/movieController.js';
+import createHomeController from './controllers/homeController.js';
 
 const app = express();
 
@@ -12,14 +13,7 @@ app.engine("hbs", handlebars.engine());
 app.set("view engine", "hbs");
 
 app.use(movieController);
-
-app.get("/", (req, res) => {
-    res.render('home.hbs', { movies });
-});
-
-app.get("/about", (req, res) => {
-    res.render('about.hbs');
-})
+app.use(createHomeController(movies));
 
 app.get("/*nf", (req, res) => {
     res.render('404.hbs');
