@@ -1,10 +1,14 @@
-class Movie {
+export class Movie {
     constructor(movie) {
         Object.assign(this, movie);
     }
 
     static createMovie(movie) {
         movies.push(movie);
+    }
+
+    static getMovies() {
+        return movies.slice();
     }
 }
 
@@ -65,5 +69,3 @@ let movies = [
         description: "Batman faces the Joker, a criminal mastermind bent on chaos in Gotham City."
     })
 ];
-
-export default movies;
