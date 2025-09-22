@@ -1,5 +1,6 @@
 import express from 'express';
 import handlebars from 'express-handlebars'
+import movies from '../models/Movie.js';
 
 const app = express();
 
@@ -10,7 +11,7 @@ app.engine("hbs", handlebars.engine());
 app.set("view engine", "hbs");
 
 app.get("/", (req, res) => {
-    res.render('home.hbs');
+    res.render('home.hbs', { movies });
 });
 
 app.get("/about", (req, res) => {
