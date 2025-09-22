@@ -36,7 +36,10 @@ movieController.get("/movies/:movieId", (req, res) => {
     if (!movie) {
         return res.status(404).render("404.hbs")
     };
-    res.render('details.hbs', { movie });
+
+    const ratingCount = '&#x2605'.repeat(Math.floor(movie.rating));
+
+    res.render('details.hbs', { movie, rating: ratingCount });
 });
 
 
