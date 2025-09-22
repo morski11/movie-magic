@@ -4,6 +4,11 @@ function getAll() {
     return Movie.getMovies();
 }
 
+function createMovie(movieObj){
+    Movie.createMovie(movieObj);
+}
+
 export const movieService = {
-    getAll
+    getAll,
+    createMovie
 }

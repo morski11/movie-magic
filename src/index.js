@@ -11,6 +11,8 @@ app.use(express.static('public'));
 app.engine("hbs", handlebars.engine());
 app.set("view engine", "hbs");
 
+app.use(express.urlencoded());
+
 app.use(movieController);
 app.use(homeController);
 

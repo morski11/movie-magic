@@ -4,7 +4,10 @@ export class Movie {
     }
 
     static createMovie(movie) {
-        movies.push(movie);
+        const newMovie = new Movie(movie);
+        //improvise unique id without uuid 
+        newMovie.id = Date.now().toString();
+        movies.push(newMovie);
     }
 
     static getMovies() {

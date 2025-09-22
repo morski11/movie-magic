@@ -17,9 +17,11 @@ movieController.get("/movies/:movieId", (req, res) => {
     res.render('details.hbs', { movie });
 });
 
-// movieController.post("/movies/create", (req, res) => {
-//     console.log('click create');
-//     res.end();
-// });
+movieController.post("/movies/create", (req, res) => {
+    console.log('click create');
+    const body = req.body;
+    movieService.createMovie(body);
+    res.redirect("/");
+});
 
 export default movieController;
