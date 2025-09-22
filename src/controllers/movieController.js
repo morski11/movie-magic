@@ -8,7 +8,24 @@ movieController.get("/movies/create", (req, res) => {
 });
 
 movieController.get("/movies/search", (req, res) => {
-    const movies = movieService.getAll();
+    let movies = movieService.getAll();
+
+    const filter = req.query;
+
+    if (filter.title) {
+        movies = movies.filter(m => m.title.toLowerCase().includes(filter.title.toLowerCase()));
+    }
+
+    if (filter.genre) {
+        movies = movies.filter(m => m.genre.toLowerCase() == filter.genre.toLowerCase());
+    }
+    console.log(filter);
+
+    if (filter.year) {
+        movies = movies.filter(m => m.year == Number(filter.year));
+
+    }
+
     res.render('search.hbs', { movies });
 });
 
