@@ -7,22 +7,9 @@ movieController.get("/movies/create", (req, res) => {
     res.render('create.hbs');
 });
 
-movieController.get("/movies/search", (req, res) => {
-    let movies = movieService.getAll();
-
+movieController.get("/movies/search", async (req, res) => {
     const filter = req.query;
-
-    if (filter.title) {
-        movies = movies.filter(m => m.title.toLowerCase().includes(filter.title.toLowerCase()));
-    }
-
-    if (filter.genre) {
-        movies = movies.filter(m => m.genre.toLowerCase() == filter.genre.toLowerCase());
-    }
-
-    if (filter.year) {
-        movies = movies.filter(m => m.year == Number(filter.year));
-    }
+    let movies = await movieService.getFilteredMovies(filter);
 
     res.render('search.hbs', { movies });
 });
