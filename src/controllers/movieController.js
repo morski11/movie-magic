@@ -27,10 +27,10 @@ movieController.get("/movies/search", (req, res) => {
     res.render('search.hbs', { movies });
 });
 
-movieController.get("/movies/:movieId", (req, res) => {
-    const movieId = Number(req.params.movieId);
+movieController.get("/movies/:movieId", async (req, res) => {
+    const movieId = req.params.movieId;
 
-    const movie = movieService.getAll().find(m => m.id == movieId);
+    const movie = await movieService.getById(movieId);
     if (!movie) {
         return res.status(404).render("404.hbs")
     };
