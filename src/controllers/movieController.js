@@ -19,11 +19,9 @@ movieController.get("/movies/search", (req, res) => {
     if (filter.genre) {
         movies = movies.filter(m => m.genre.toLowerCase() == filter.genre.toLowerCase());
     }
-    console.log(filter);
 
     if (filter.year) {
         movies = movies.filter(m => m.year == Number(filter.year));
-
     }
 
     res.render('search.hbs', { movies });
@@ -44,7 +42,6 @@ movieController.get("/movies/:movieId", (req, res) => {
 
 
 movieController.post("/movies/create", (req, res) => {
-    console.log('click create');
     const body = req.body;
     movieService.createMovie(body);
     res.redirect("/");
