@@ -8,7 +8,7 @@ import homeController from './controllers/homeController.js';
 const url = 'mongodb://localhost:27017';
 
 try {
-    mongoose.connect(url);
+    mongoose.connect(url, { dbName: "movie-magic" });
     console.log('Connected successfully to the DB!');
 } catch (err) {
     console.log(err);
@@ -21,8 +21,11 @@ app.use(express.static('public'));
 
 app.engine("hbs", handlebars.engine({
     extname: "hbs",
-    partialsDir: "views/partials"
-
+    partialsDir: "views/partials",
+    runtimeOptions: {
+        allowProtoMethodsByDefault: true,
+        allowProtoPropertiesByDefault: true
+    }
 }));
 app.set("view engine", "hbs");
 
