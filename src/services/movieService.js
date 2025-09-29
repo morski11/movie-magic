@@ -18,10 +18,11 @@ async function getFilteredMovies(filter = {}) {
         query.where({ year: filter.year });
     }
     if (filter.title) {
-        // this is partial match
+        // this is partial match case insensitive
         query.where({ title: { $regex: filter.title, $options: 'i' } })
     }
     if (filter.genre) {
+        // this is exact match case sensitive
         query.where({ genre: { $regex: `^${filter.genre}$`, $options: 'i' } });
     }
     return await query;

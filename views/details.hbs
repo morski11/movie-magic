@@ -23,12 +23,15 @@
 
                     <p class="disc">Description: {{movie.description}}</p>
                     <p class="card-category">Category: {{movie.category}}</p>
+                    <a class="details-button" href="/movies/{{movie.id}}/attach">Attach Cast</a>
                 </div>
             </div>
             <div class="card_right">
                 <img src={{movie.imageURL}} alt="{{movie.title}}">
             </div>
         </div>
+
+        {{!-- TODO fix actual casts--}}
         <div class="cast-card">
             <div class="card-img">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREoIKQIGtYhC0ufGFsJQl6TcR1VMdhjq1A9g&usqp=CAU"
@@ -38,7 +41,7 @@
                 <h1>Jonah Hauer-King</h1>
                 <h3>Age: 28</h3>
                 <h3>Born: London, England, UK</h3>
-                <h3>Name in Movie: Eric</h3>
+                <h3>n/a</h3>
             </div>
         </div>
 
