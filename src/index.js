@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 
 import movieController from './controllers/movieController.js';
 import homeController from './controllers/homeController.js';
+import castController from './controllers/castController.js';
 
 const url = 'mongodb://localhost:27017';
 
@@ -33,6 +34,7 @@ app.use(express.urlencoded());
 
 app.use(movieController);
 app.use(homeController);
+app.use(castController);
 
 app.get("/*nf", (req, res) => {
     res.render('404.hbs');
