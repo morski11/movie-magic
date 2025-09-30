@@ -4,6 +4,11 @@ function createCast(data) {
     Cast.create(data);
 }
 
+async function getAll() {
+    return await Cast.find();
+}
+
 export const castService = {
-    createCast
+    createCast,
+    getAll
 }
