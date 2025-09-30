@@ -27,6 +27,17 @@ movieController.get("/movies/:movieId", async (req, res) => {
     res.render('details.hbs', { movie, rating: ratingCount });
 });
 
+movieController.get("/movies/:movieId/attach", async (req, res) => {
+    const movieId = req.params.movieId;
+
+    const movie = await movieService.getById(movieId);
+    if (!movie) {
+        return res.status(404).render("404.hbs")
+    };
+
+    res.render('cast-attach.hbs', { movie });
+});
+
 
 movieController.post("/movies/create", (req, res) => {
     const body = req.body;
