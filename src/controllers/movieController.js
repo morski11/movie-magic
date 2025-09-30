@@ -42,6 +42,20 @@ movieController.get("/movies/:movieId/attach", async (req, res) => {
 });
 
 
+movieController.post('/movies/:movieId/attach', async (req, res) => {
+    const body = req.body;
+    const movieId = req.params.movieId;
+
+    const castId = body.cast;
+    console.log(castId);
+    await movieService.updateById(movieId, {
+        $addToSet: { casts: castId }
+    });
+
+    res.redirect(`/movies/${movieId}`);
+})
+
+
 movieController.post("/movies/create", (req, res) => {
     const body = req.body;
     movieService.createMovie(body);

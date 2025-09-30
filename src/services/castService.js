@@ -8,7 +8,13 @@ async function getAll() {
     return await Cast.find();
 }
 
+async function getById(id)
+{
+    return await Cast.findById(id);
+}
+
 export const castService = {
     createCast,
-    getAll
+    getAll,
+    getById
 }

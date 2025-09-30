@@ -28,9 +28,15 @@ async function getFilteredMovies(filter = {}) {
     return await query;
 }
 
+async function updateById(id, update) {
+    return Movie.findByIdAndUpdate(id, update, { new: true }); 
+    // `new: true` returns the updated doc if you want it
+}
+
 export const movieService = {
     getAll,
     createMovie,
     getById,
-    getFilteredMovies
+    getFilteredMovies,
+    updateById
 }
