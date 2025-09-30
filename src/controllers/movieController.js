@@ -33,12 +33,14 @@ movieController.get("/movies/:movieId/attach", async (req, res) => {
     const movie = await movieService.getById(movieId);
     const casts = await castService.getAll();
 
+    const availableCasts = casts.filter(c => !movie.casts.some(mc => mc._id.toString() === c._id.toString()))
+
     if (!movie) {
         return res.status(404).render("404.hbs")
     };
 
 
-    res.render('cast-attach.hbs', { movie, casts });
+    res.render('cast-attach.hbs', { movie, casts: availableCasts });
 });
 
 
