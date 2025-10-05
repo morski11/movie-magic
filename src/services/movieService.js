@@ -4,8 +4,11 @@ async function getAll() {
     return await Movie.find();
 }
 
-async function createMovie(movieObj) {
-    await Movie.create(movieObj);
+async function createMovie(movieObj, userId) {
+    await Movie.create({
+        ...movieObj,
+        creatorId: userId
+    });
 }
 
 async function getById(movieId) {
@@ -29,7 +32,7 @@ async function getFilteredMovies(filter = {}) {
 }
 
 async function updateById(id, update) {
-    return Movie.findByIdAndUpdate(id, update, { new: true }); 
+    return Movie.findByIdAndUpdate(id, update, { new: true });
     // `new: true` returns the updated doc if you want it
 }
 

@@ -1,11 +1,13 @@
 import express from 'express';
 import handlebars from 'express-handlebars'
 import mongoose from 'mongoose';
+import cookieParser from 'cookie-parser';
 
 import movieController from './controllers/movieController.js';
 import homeController from './controllers/homeController.js';
 import castController from './controllers/castController.js';
 import userController from './controllers/userController.js';
+import authMiddleware from './middlewares/authMiddleware.js';
 
 const url = 'mongodb://localhost:27017';
 
@@ -32,6 +34,8 @@ app.engine("hbs", handlebars.engine({
 app.set("view engine", "hbs");
 
 app.use(express.urlencoded());
+app.use(cookieParser());
+app.use(authMiddleware);
 
 app.use(movieController);
 app.use(homeController);

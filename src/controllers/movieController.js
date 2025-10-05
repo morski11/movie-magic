@@ -60,7 +60,8 @@ movieController.post('/movies/:movieId/attach', async (req, res) => {
 
 movieController.post("/movies/create", (req, res) => {
     const body = req.body;
-    movieService.createMovie(body);
+    const userId = req.user.userId;
+    movieService.createMovie(body, userId);
     res.redirect("/");
 });
 
