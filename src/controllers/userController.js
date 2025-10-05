@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { userService } from "../services/userService.js";
 
 const userRouter = Router();
 
@@ -11,7 +12,9 @@ userRouter.post("/register", (req, res) => {
     const userData = req.body;
 
     console.log(userData);
-    res.end();
+    userService.createUser(userData);
+
+    res.redirect("/login");
 })
 
 export default userRouter;
