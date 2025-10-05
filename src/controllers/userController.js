@@ -15,6 +15,11 @@ userRouter.post("/register", (req, res) => {
     userService.createUser(userData);
 
     res.redirect("/login");
+});
+
+
+userRouter.get("/login", (req,res) => {
+    res.render('login.hbs');
 })
 
 export default userRouter;
