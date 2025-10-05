@@ -4,9 +4,13 @@ import User from "../models/User.js";
 function createUser(userData) {
     //TODO check pass  and repass Later
     User.create(userData);
+}
 
+async function getUserByEmail(email){
+    return await User.findOne({email});
 }
 
 export const userService = {
-    createUser
+    createUser,
+    getUserByEmail
 }
