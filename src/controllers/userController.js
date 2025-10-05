@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { userService } from "../services/userService.js";
 import bcrypt from 'bcrypt';
-import jwt from'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import { JWT_SECRET } from "../constants/constants.js";
 
 const userRouter = Router();
@@ -46,11 +46,15 @@ userRouter.post("/login", async (req, res) => {
         email: user.email
     }
 
-    const token = jwt.sign(payload, JWT_SECRET, {expiresIn: '1h'});
-    console.log(token);
+    const token = jwt.sign(payload, JWT_SECRET, { expiresIn: '1h' });
 
     res.cookie("auth", token);
 
+    res.redirect("/");
+})
+
+userRouter.get("/logout", (req, res) => {
+    res.clearCookie('auth');
     res.redirect("/");
 })
 
