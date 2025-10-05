@@ -16,6 +16,7 @@ export default function authMiddleware(req, res, next) {
 
         next();
     } catch {
+        res.clearCookie('auth');
         res.redirect("/login");
     }
 
