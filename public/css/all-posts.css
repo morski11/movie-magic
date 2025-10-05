@@ -162,9 +162,10 @@ img>.text-shadow {
 .details-button {
   color: #fff;
   border: none;
-  padding: 15px;
+  padding: 20px;
   outline: none;
-  margin-left: 20%;
+  margin-left: 15%;
+  margin-right: 5%;
   font-size: 18px;
   background: #B5838D;
   border-radius: 12px;
@@ -173,10 +174,7 @@ img>.text-shadow {
   -webkit-transition: 300ms ease-in-out;
   -o-transition: 200ms ease-in-out;
   transition: 200ms ease-in-out;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 300px;
+  white-space: nowrap;
 }
 
 .details:hover {
