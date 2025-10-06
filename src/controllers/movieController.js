@@ -77,4 +77,12 @@ movieController.get("/movies/:movieId/delete", (req, res) => {
     movieService.deleteById(movieId).then(() => res.redirect("/"));
 });
 
+movieController.get("/movies/:movieId/edit", async (req, res) => {
+    const movieId = req.params.movieId;
+    const movie = await movieService.getById(movieId);
+
+    res.render('edit.hbs');
+});
+
+
 export default movieController;
