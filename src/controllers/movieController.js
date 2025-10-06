@@ -81,7 +81,7 @@ movieController.get("/movies/:movieId/edit", async (req, res) => {
     const movieId = req.params.movieId;
     const movie = await movieService.getById(movieId);
 
-    res.render('edit.hbs');
+    res.render('edit.hbs', {movie});
 });
 
 
