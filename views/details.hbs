@@ -24,9 +24,11 @@
                     <p class="disc">Description: {{movie.description}}</p>
                     <p class="card-category">Category: {{movie.category}}</p>
                     <div class="button-holder">
+                        {{#if isCreator}}
                         <a class="details-button" href="/movies/{{movie.id}}/attach">Attach Cast</a>
                         <a class="details-button" href="/movies/{{movie.id}}/edit">Edit</a>
                         <a class="details-button" href="/movies/{{movie.id}}/delete">Delete</a>
+                        {{/if}}
                     </div>
 
                 </div>

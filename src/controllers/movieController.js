@@ -17,15 +17,22 @@ movieController.get("/movies/search", async (req, res) => {
 
 movieController.get("/movies/:movieId", async (req, res) => {
     const movieId = req.params.movieId;
-
     const movie = await movieService.getById(movieId);
+
     if (!movie) {
         return res.status(404).render("404.hbs")
     };
 
     const ratingCount = '&#x2605'.repeat(Math.floor(movie.rating));
+    const creatorId = movie.creatorId; // can be undefined
 
-    res.render('details.hbs', { movie, rating: ratingCount });
+    let isCreator = true;
+
+    if (!creatorId || creatorId != req.user.userId) {
+        isCreator = false;
+    }
+
+    res.render('details.hbs', { movie, rating: ratingCount, isCreator });
 });
 
 movieController.get("/movies/:movieId/attach", async (req, res) => {
