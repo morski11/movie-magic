@@ -36,10 +36,15 @@ async function updateById(id, update) {
     // `new: true` returns the updated doc if you want it
 }
 
+function deleteById(id) {
+    return Movie.findByIdAndDelete(id);
+}
+
 export const movieService = {
     getAll,
     createMovie,
     getById,
     getFilteredMovies,
-    updateById
+    updateById,
+    deleteById
 }

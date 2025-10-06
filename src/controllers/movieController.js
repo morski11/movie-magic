@@ -71,4 +71,10 @@ movieController.post("/movies/create", (req, res) => {
     res.redirect("/");
 });
 
+
+movieController.get("/movies/:movieId/delete", (req, res) => {
+    const movieId = req.params.movieId;
+    movieService.deleteById(movieId).then(() => res.redirect("/"));
+});
+
 export default movieController;
