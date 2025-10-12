@@ -16,6 +16,20 @@ const schema = new Schema({
     }
 })
 
+schema.virtual('rePass')
+    .get(function () {
+        return this._rePass;
+    })
+    .set(function (val) {
+        this._rePass = val;
+    });
+
+
+schema.pre('validate', function () {
+    if (this.isNew && this.password !== this._rePass) {
+        this.invalidate('password', "Passwords missmatch!");
+    }
+});
 
 schema.pre('save', async function () {
     const salt = await bcrypt.genSalt(11);

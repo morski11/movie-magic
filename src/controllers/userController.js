@@ -11,13 +11,14 @@ userRouter.get("/register", (req, res) => {
 });
 
 
-userRouter.post("/register", (req, res) => {
+userRouter.post("/register", async (req, res) => {
     const userData = req.body;
 
-    const userExists = userService.userExists(userData.email);
+    const userExists = await userService.userExists(userData.email);
+    console.log(userExists);
 
     if (userExists) {
-        
+        throw new Error('user already exists!');
     }
 
     userService.createUser(userData);
