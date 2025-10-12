@@ -3,10 +3,11 @@ import { userService } from "../services/userService.js";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { JWT_SECRET } from "../constants/constants.js";
+import { isLogged } from "../middlewares/isLoggedMiddleware.js";
 
 const userRouter = Router();
 
-userRouter.get("/register", (req, res) => {
+userRouter.get("/register", isLogged, (req, res) => {
     res.render('register.hbs');
 });
 
@@ -15,7 +16,6 @@ userRouter.post("/register", async (req, res) => {
     const userData = req.body;
 
     const userExists = await userService.userExists(userData.email);
-    console.log(userExists);
 
     if (userExists) {
         throw new Error('user already exists!');
@@ -27,7 +27,7 @@ userRouter.post("/register", async (req, res) => {
 });
 
 
-userRouter.get("/login", (req, res) => {
+userRouter.get("/login", isLogged, (req, res) => {
     res.render('login.hbs');
 })
 
