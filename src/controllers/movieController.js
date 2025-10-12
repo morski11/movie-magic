@@ -64,7 +64,7 @@ movieController.post('/movies/:movieId/attach', async (req, res) => {
 })
 
 
-movieController.post("/movies/create",async (req, res) => {
+movieController.post("/movies/create", async (req, res) => {
     const body = req.body;
     const userId = req.user.userId;
     await movieService.createMovie(body, userId);
@@ -79,9 +79,11 @@ movieController.get("/movies/:movieId/delete", (req, res) => {
 
 movieController.get("/movies/:movieId/edit", async (req, res) => {
     const movieId = req.params.movieId;
-    const movie = await movieService.getById(movieId); 
+    const movie = await movieService.getById(movieId);
 
-    res.render('edit.hbs', {movie});
+    const categories = getCategoriesWithSelected(movie.category);
+
+    res.render('edit.hbs', { movie, categories });
 });
 
 
@@ -95,8 +97,28 @@ movieController.post("/movies/:movieId/edit", async (req, res) => {
 
 });
 
-function getCategoriesWithSelected(movie){
+function getCategoriesWithSelected(selected) {
 
+    const categories = [{
+        value: "tv-show",
+        label: "TV Show"
+    }, {
+        value: "animation",
+        label: "Animation"
+    }, {
+        value: "movie",
+        label: "Movie"
+    }, {
+        value: "documentary",
+        label: "Documentary"
+    }, {
+        value: "short-film",
+        label: "Short Film"
+    }];
+
+    return categories.map(cat => (
+        cat.value == selected ? { ...cat, selected: 'selected' } : cat
+    ));
 }
 
 export default movieController;
