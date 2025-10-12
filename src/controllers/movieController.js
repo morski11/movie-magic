@@ -64,10 +64,10 @@ movieController.post('/movies/:movieId/attach', async (req, res) => {
 })
 
 
-movieController.post("/movies/create", (req, res) => {
+movieController.post("/movies/create",async (req, res) => {
     const body = req.body;
     const userId = req.user.userId;
-    movieService.createMovie(body, userId);
+    await movieService.createMovie(body, userId);
     res.redirect("/");
 });
 
@@ -79,7 +79,7 @@ movieController.get("/movies/:movieId/delete", (req, res) => {
 
 movieController.get("/movies/:movieId/edit", async (req, res) => {
     const movieId = req.params.movieId;
-    const movie = await movieService.getById(movieId);
+    const movie = await movieService.getById(movieId); 
 
     res.render('edit.hbs', {movie});
 });
@@ -95,5 +95,8 @@ movieController.post("/movies/:movieId/edit", async (req, res) => {
 
 });
 
+function getCategoriesWithSelected(movie){
+
+}
 
 export default movieController;
