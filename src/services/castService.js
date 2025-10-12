@@ -1,15 +1,14 @@
 import Cast from "../models/Cast.js";
 
 function createCast(data) {
-    Cast.create(data);
+    return Cast.create(data);
 }
 
 async function getAll() {
     return await Cast.find();
 }
 
-async function getById(id)
-{
+async function getById(id) {
     return await Cast.findById(id);
 }
 

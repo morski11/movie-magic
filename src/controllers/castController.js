@@ -7,9 +7,9 @@ router.get("/cast/create", (req, res) => {
     res.render('cast-create');
 });
 
-router.post("/cast/create", (req, res) => {
+router.post("/cast/create", async (req, res) => {
     const castData = req.body;
-    castService.createCast(castData);
+    await castService.createCast(castData);
     res.redirect("/");
 })
 
