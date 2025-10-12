@@ -14,7 +14,12 @@ userRouter.get("/register", (req, res) => {
 userRouter.post("/register", (req, res) => {
     const userData = req.body;
 
-    console.log(userData);
+    const userExists = userService.userExists(userData.email);
+
+    if (userExists) {
+        
+    }
+
     userService.createUser(userData);
 
     res.redirect("/login");

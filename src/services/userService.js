@@ -6,11 +6,16 @@ function createUser(userData) {
     User.create(userData);
 }
 
-async function getUserByEmail(email){
-    return await User.findOne({email});
+async function getUserByEmail(email) {
+    return await User.findOne({ email });
+}
+
+async function userExists(email) {
+    return await User.exists({ email });
 }
 
 export const userService = {
     createUser,
-    getUserByEmail
+    getUserByEmail,
+    userExists
 }
