@@ -2,7 +2,6 @@ import { create } from "express-handlebars";
 import User from "../models/User.js";
 
 function createUser(userData) {
-    //TODO check pass  and repass Later
     return User.create(userData);
 }
 

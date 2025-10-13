@@ -42,28 +42,33 @@ userRouter.get("/login", isLogged, (req, res) => {
 userRouter.post("/login", async (req, res) => {
     const data = req.body;
 
-    const user = await userService.getUserByEmail(data.email);
+    try {
+        const user = await userService.getUserByEmail(data.email);
 
-    if (!user) {
-        throw new Error("User not found!");
+        if (!user) {
+            throw new Error("User not found!");
+        }
+
+        const isValid = await validatePassword(data.password, user.password);
+
+        if (!isValid) {
+            throw new Error("Password is not valid!");
+        }
+
+        const payload = {
+            userId: user._id,
+            email: user.email
+        }
+
+        const token = jwt.sign(payload, JWT_SECRET, { expiresIn: '1h' });
+
+        res.cookie("auth", token);
+
+        res.redirect("/");
+    } catch (err) {
+        const errMsg = getFirstError(err);
+        return res.status(400).render('login', { error: errMsg });
     }
-
-    const isValid = await validatePassword(data.password, user.password);
-
-    if (!isValid) {
-        throw new Error("Password is not valid!");
-    }
-
-    const payload = {
-        userId: user._id,
-        email: user.email
-    }
-
-    const token = jwt.sign(payload, JWT_SECRET, { expiresIn: '1h' });
-
-    res.cookie("auth", token);
-
-    res.redirect("/");
 })
 
 userRouter.get("/logout", (req, res) => {
