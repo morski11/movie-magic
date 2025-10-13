@@ -3,7 +3,7 @@ import User from "../models/User.js";
 
 function createUser(userData) {
     //TODO check pass  and repass Later
-    User.create(userData);
+    return User.create(userData);
 }
 
 async function getUserByEmail(email) {

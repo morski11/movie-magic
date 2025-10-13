@@ -4,14 +4,14 @@ import bcrypt from 'bcrypt';
 const schema = new Schema({
     email: {
         type: String,
-        required: true,
+        required: [true, "Email is required!"],
         unique: true,
         minlength: [10, "Email should be atleast 10 character long."],
         match: [/^\w*\@[a-zA-Z0-9]+\.[a-zA-Z0-9]+$/, "Email is not in valid format!"]
     },
     password: {
         type: String,
-        required: true,
+        required: [true, "Password is required!"],
         minLength: [6, "Password should be atleast 6 characters long"]
     }
 })
